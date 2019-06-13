@@ -61,8 +61,8 @@ def get_shared_key(s):
 def message_to_bytes(ip, data):
     ip = bytes(ip, 'utf-8')
     data = bytes(data, 'utf-8')
-    return ip+"__!@#$%^&*()__"+data
+    return ip+b"__!@#$%^&*()__"+data
 
 def bytes_to_message(message):
-    ip, data = message.split("__!@#$%^&*()__")
+    ip, data = message.split(b"__!@#$%^&*()__")
     return ip, data
