@@ -8,6 +8,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher
 from cryptography.hazmat.primitives.ciphers.modes import CTR
 from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from cryptography.hazmat.primitives.hashes import SHA3_256
+from requests import get
 
 def exchange(privkey, pubkey):
     return privkey.exchange(ECDH(), pubkey)
@@ -57,8 +58,11 @@ def get_shared_key(s):
     pubkey = load_public(data)
     return (privkey, exchange(privkey, pubkey))
 
-def message(ip, data):
+def message_to_bytes(ip, data):
     ip = bytes(ip, 'utf-8')
     data = bytes(data, 'utf-8')
-    header = bytes(f"{len(ip):<3}" + f"{len(data):<10}")
-    return header+ip+data
+    return ip+"__!@#$%^&*()__"+data
+
+def bytes_to_message(message):
+    ip, data = message.split("__!@#$%^&*()__")
+    return ip, data

@@ -30,7 +30,7 @@ with open('Factor.json', 'r') as f:
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((socket.gethostname(), response_port))
-s.listen(5)
+s.listen(1)
 while True:
     clientsocket, address = s.accept()
     print(address)
