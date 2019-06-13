@@ -1,0 +1,5 @@
+{
+    "request_port": 15625,
+    "response_port": 15626,
+    "continuance_probability": 0.8
+}
