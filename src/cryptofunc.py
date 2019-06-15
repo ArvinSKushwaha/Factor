@@ -58,11 +58,11 @@ def get_shared_key(s):
     pubkey = load_public(data)
     return (privkey, exchange(privkey, pubkey))
 
-def message_to_bytes(ip, data):
+def message_to_bytes(ip, data, method):
     ip = bytes(ip, 'utf-8')
     data = bytes(data, 'utf-8')
-    return ip+b"__!@#$%^&*()__"+data
+    return ip+b"__!@#$%^&*()__"+data+b"__!@#$%^&*()__"+method
 
 def bytes_to_message(message):
-    ip, data = message.split(b"__!@#$%^&*()__")
-    return ip, data
+    ip, data, method = message.split(b"__!@#$%^&*()__")
+    return ip, data, method
